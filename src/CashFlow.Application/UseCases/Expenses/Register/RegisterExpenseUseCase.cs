@@ -1,4 +1,4 @@
-﻿using CashFlow.Communication.Enums;
+﻿using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Entities;
@@ -9,31 +9,38 @@ using CashFlow.Exception.ExceptionsBase;
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase :  IRegisterExpenseUseCase
 {
-    private readonly IExpensesRepository _repository;
+    private readonly IExpensesWriteOnlyRepopsitory _repository;
     private readonly IUnitOfWork _unitOfWork;
-    public RegisterExpenseUseCase(IExpensesRepository repository, IUnitOfWork unitOfWork)
+    private readonly IMapper _mapper;
+    public RegisterExpenseUseCase(
+        IExpensesWriteOnlyRepopsitory repository, 
+        IUnitOfWork unitOfWork,
+        IMapper mapper
+        )
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
-    public ResponseRegisteredExpenseJson Execute(RequestExpenseJson request)
+    public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)
     {
         Validate(request);
 
-        var entity = new Expense
-        {
-            Amount = request.Amount,
-            Date = request.Date,
-            Description = request.Description,
-            Title = request.Title,
-            PaymentMethod = (Domain.Enums.PaymentMethod)request.PaymentMethod,
-        };
+        var entity = _mapper.Map<Expense>(request);
+        //new Expense
+        //{
+        //    Amount = request.Amount,
+        //    Date = request.Date,
+        //    Description = request.Description,
+        //    Title = request.Title,
+        //    PaymentMethod = (Domain.Enums.PaymentMethod)request.PaymentMethod,
+        //};
 
-        _repository.AddExpense(entity);
-        _unitOfWork.Commit();
+        await _repository.AddExpense(entity);
+        await _unitOfWork.Commit();
 
-        return new ResponseRegisteredExpenseJson();
+        return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
     }
 
     private void Validate(RequestExpenseJson request)
