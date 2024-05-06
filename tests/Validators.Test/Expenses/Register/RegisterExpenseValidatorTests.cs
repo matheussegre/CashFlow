@@ -1,6 +1,5 @@
-﻿using CashFlow.Application.UseCases.Expenses.Register;
+﻿using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Communication.Enums;
-using CashFlow.Communication.Requests;
 using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
@@ -13,7 +12,7 @@ public class RegisterExpenseValidatorTests
     public void Success()
     {
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestExpenseJsonBuilder.Build();
 
         //Act
@@ -30,7 +29,7 @@ public class RegisterExpenseValidatorTests
     public void ErrorTitleEmpty(string title)
     { 
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestExpenseJsonBuilder.Build();
         request.Title = title;
 
@@ -47,7 +46,7 @@ public class RegisterExpenseValidatorTests
     public void ErrorDateFuture()
     {
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestExpenseJsonBuilder.Build();
         request.Date = DateTime.UtcNow.AddDays(1);
 
@@ -65,9 +64,9 @@ public class RegisterExpenseValidatorTests
     public void ErrorPaymentMethodIsInvalid()
     {
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestExpenseJsonBuilder.Build();
-        request.PaymentsMethod = (PaymentsMethods)700;
+        request.PaymentMethod = (PaymentsMethods)700;
 
         //Act
         var result = validator.Validate(request);
@@ -88,7 +87,7 @@ public class RegisterExpenseValidatorTests
     public void ErrorAmountInvalid(decimal amount)
     {
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RequestExpenseJsonBuilder.Build();
         request.Amount = amount;
 

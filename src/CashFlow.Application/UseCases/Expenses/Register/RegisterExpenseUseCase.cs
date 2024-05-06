@@ -9,11 +9,11 @@ using CashFlow.Exception.ExceptionsBase;
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public class RegisterExpenseUseCase :  IRegisterExpenseUseCase
 {
-    private readonly IExpensesWriteOnlyRepopsitory _repository;
+    private readonly IExpensesWriteOnlyRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     public RegisterExpenseUseCase(
-        IExpensesWriteOnlyRepopsitory repository, 
+        IExpensesWriteOnlyRepository repository, 
         IUnitOfWork unitOfWork,
         IMapper mapper
         )
@@ -45,7 +45,7 @@ public class RegisterExpenseUseCase :  IRegisterExpenseUseCase
 
     private void Validate(RequestExpenseJson request)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
 
         var result = validator.Validate(request);
 
