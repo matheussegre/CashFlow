@@ -13,3 +13,10 @@ Os pacotes **NuGet** utilizados foram:
         <li>**FluentValidation**: Utilizado na implementação de regras de validação de forma simples e intuitiva nas classes de requisições, mantendo o código limpo.</li>
         <li>**EnitityFramework**: Atua como um ORM (Object-Relational Mapper) simplificando as interações com o banco e dados, permitindo o uso de objetos .NET para manipular dados diretamente, sem a necessidade de consultas SQL.</li>
     </ul>
+
+### Features
+
+- **Domain-Drive Design (DDD)**: Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
+- **Testes de Unidade**: Testes abrangentes com FluentAssertions para garantir a funcionalidade e a qualidade.
+- **Geração de Relatórios**: Capacidade de exportar relatórios detalhados para **PDF** e **Excel**, oferencendo uma análise visual e eficaz das despesas.
+- **RESTful API com Documentação Swagger**: Interface documetnada que facilita a integra;cão e o teste por parte dos desenvolvedores.
