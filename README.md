@@ -1,3 +1,5 @@
+# CashFlow API
+
 ## Sobre o projeto
 
 **API** desenvolvida durante meus estudos na formação de C# da Rocketseat, sua proposta é oferecer uma solução eficaz para o gerenciamento de despesas pessoais.
@@ -20,3 +22,23 @@ Os pacotes **NuGet** utilizados foram:
 - **Testes de Unidade**: Testes abrangentes com FluentAssertions para garantir a funcionalidade e a qualidade.
 - **Geração de Relatórios**: Capacidade de exportar relatórios detalhados para **PDF** e **Excel**, oferencendo uma análise visual e eficaz das despesas.
 - **RESTful API com Documentação Swagger**: Interface documetnada que facilita a integra;cão e o teste por parte dos desenvolvedores.
+
+## Getting Started
+
+Para obter uma cópia local funcionando, siga estes passos.
+
+### Requisitos
+
+* Visual Studio 2022+ ou VS Code
+* Windowns 10+ ou Linux/MacOS com [.NET SDK](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0) instalado
+* MySQL Server
+
+### Instalação
+
+1. Clone o repositório:
+    ```sh 
+    git clone git@github.com:matheussegre/CashFlow.git
+    ```
+2. Preencha as informações no arquivo `appsettings.Development.json`
+3. Execute a API e aproveite seu teste :)
+
