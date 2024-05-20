@@ -16,6 +16,8 @@ Os pacotes **NuGet** utilizados foram:
         <li>**EnitityFramework**: Atua como um ORM (Object-Relational Mapper) simplificando as interações com o banco e dados, permitindo o uso de objetos .NET para manipular dados diretamente, sem a necessidade de consultas SQL.</li>
     </ul>
 
+![hero-image]
+
 ### Features
 
 - **Domain-Drive Design (DDD)**: Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
@@ -30,7 +32,7 @@ Para obter uma cópia local funcionando, siga estes passos.
 ### Requisitos
 
 * Visual Studio 2022+ ou VS Code
-* Windowns 10+ ou Linux/MacOS com [.NET SDK](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0) instalado
+* Windowns 10+ ou Linux/MacOS com [.NET SDK][dot-net-sdk] instalado
 * MySQL Server
 
 ### Instalação
@@ -41,4 +43,13 @@ Para obter uma cópia local funcionando, siga estes passos.
     ```
 2. Preencha as informações no arquivo `appsettings.Development.json`
 3. Execute a API e aproveite seu teste :)
+
+
+
+
+<!-- Links -->
+[dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download/dotnet/8.0
+
+<!-- Images -->
+[hero-image]: images/heroimage.png
 
