@@ -1,5 +1,6 @@
 ﻿using CashFlow.Application.UseCases.Expenses.Reports.Excel;
 using CashFlow.Application.UseCases.Expenses.Reports.PDF;
+using CashFlow.Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -11,13 +12,14 @@ public class ReportController : ControllerBase
     [HttpGet("excel")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+
     public async Task<IActionResult> GetExcel(
         [FromServices] IGenerateExpensesReportUseCase useCase,
-        [FromHeader] DateOnly month)
+        [FromHeader] DateTime month)
     {
-        byte[] file = await useCase.Execute(month);
+        byte[] file = await useCase.Execute(DateOnly.FromDateTime(month));
 
-        if(file.Length > 0) File(file, MediaTypeNames.Application.Octet, "report.xlsx");
+        if (file.Length > 0) return File(file, MediaTypeNames.Application.Octet, "report.xlsx");
 
         return NoContent();
     }
@@ -27,11 +29,11 @@ public class ReportController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetPDF(
         [FromServices] IGenerateExpensesReportPdfUseCase useCase,
-        [FromQuery] DateOnly month)
+        [FromQuery] DateTime month)
     {
-        byte[] file = await useCase.Execute(month);
+        byte[] file = await useCase.Execute(DateOnly.FromDateTime(month));
 
-        if (file.Length > 0) File(file, MediaTypeNames.Application.Pdf, "report.pdf");
+        if (file.Length > 0) return File(file, MediaTypeNames.Application.Pdf, "report.pdf");
 
         return NoContent();
     }

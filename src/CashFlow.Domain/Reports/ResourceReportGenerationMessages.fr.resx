@@ -121,7 +121,7 @@
     <value>Montant</value>
   </data>
   <data name="CASH" xml:space="preserve">
-    <value>Argent</value>
+    <value>Espèces</value>
   </data>
   <data name="CREDIT_CARD" xml:space="preserve">
     <value>Carte de crédit</value>
@@ -136,18 +136,18 @@
     <value>Description</value>
   </data>
   <data name="ELETRONIC_TRANSFER" xml:space="preserve">
-    <value>Virement</value>
+    <value>Transfert électronique</value>
   </data>
   <data name="EXPENSES_FOR" xml:space="preserve">
-    <value>Déspeses for</value>
+    <value>Dépenses pour</value>
   </data>
   <data name="PAYMENT_METHOD" xml:space="preserve">
-    <value>Mode de Paiment</value>
+    <value>Mode de paiement</value>
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>Titre</value>
   </data>
   <data name="TOTAL_SPENT_IN" xml:space="preserve">
-    <value>Total dépesé en {0}</value>
+    <value>Total dépensé pour {0}</value>
   </data>
 </root>

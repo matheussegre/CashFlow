@@ -37,7 +37,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         var totalExpenses = expenses.Sum(expense => expense.Amount);
         CreateTotalSpentSection(page, month, totalExpenses);
 
-        foreach(var expense in expenses)
+        foreach (var expense in expenses)
         {
             var table = CreateExpenseTable(page);
 
@@ -50,7 +50,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
 
             row = table.AddRow();
             row.Height = HEIGHT_ROW_EXPENSE_TABLE;
-            
+
             row.Cells[0].AddParagraph(expense.Date.ToString("D"));
             SetStyleBaseForExpenseInformation(row.Cells[0]);
             row.Cells[0].Format.LeftIndent = 12;
@@ -63,7 +63,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
 
             AddAmountForExpense(row.Cells[3], expense.Amount);
 
-            if(string.IsNullOrWhiteSpace(expense.Description) == false)
+            if (string.IsNullOrWhiteSpace(expense.Description) == false)
             {
                 var descriptionRow = table.AddRow();
                 descriptionRow.Height = HEIGHT_ROW_EXPENSE_TABLE;
@@ -235,7 +235,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         renderer.RenderDocument();
 
         using var file = new MemoryStream();
-        renderer.PdfDocument.Save(file);
+        renderer.PdfDocument.Save(file,false);
 
         return file.ToArray();
     }
