@@ -16,17 +16,17 @@ public partial class PasswordValidator<T> : PropertyValidator<T, string>
 
     public override bool IsValid(ValidationContext<T> context, string password)
     {
-        if (string.IsNullOrWhiteSpace(password)) ValidationMessage(context);
+        if (string.IsNullOrWhiteSpace(password)) return ValidationMessage(context);
 
-        if (password.Length < 8) ValidationMessage(context);
+        if (password.Length < 8) return ValidationMessage(context);
 
-        if (UpperCaseLetter().IsMatch(password) is false) ValidationMessage(context);
+        if (UpperCaseLetter().IsMatch(password) is false) return ValidationMessage(context);
 
-        if (LowerCaseLetter().IsMatch(password) is false) ValidationMessage(context);
+        if (LowerCaseLetter().IsMatch(password) is false) return ValidationMessage(context);
 
-        if (Numbers().IsMatch(password) is false) ValidationMessage(context);
+        if (Numbers().IsMatch(password) is false) return ValidationMessage(context);
 
-        if (SpecialSymbols().IsMatch(password) is false) ValidationMessage(context);
+        if (SpecialSymbols().IsMatch(password) is false) return ValidationMessage(context);
 
         return true;
     }
