@@ -5,9 +5,9 @@ public interface IExpensesWriteOnlyRepository
 {
     Task AddExpense(Expense expense);
     /// <summary>
-    /// This function returns TRUE if the deletion was successful otherwise returns FALSE
+    /// This is a context exemple
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<bool> Delete(long id);
+    Task Delete(long id);
 }
