@@ -6,13 +6,13 @@ using CashFlow.Domain.Services.LoggedUser;
 using ClosedXML.Excel;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Excel;
-public class GenerateExpensesReportUseCase : IGenerateExpensesReportUseCase
+public class GenerateExpenseReportUseCase : IGenerateExpensesReportUseCase
 {
     private const string CURRENCY_SYMBOL = "$";
     private readonly IExpensesReadOnlyRepository _repository;
     private readonly ILoggedUser _loggedUser;
 
-    public GenerateExpensesReportUseCase(IExpensesReadOnlyRepository repository, ILoggedUser loggedUser)
+    public GenerateExpenseReportUseCase(IExpensesReadOnlyRepository repository, ILoggedUser loggedUser)
     {
         _repository = repository;
         _loggedUser = loggedUser;   
@@ -70,7 +70,7 @@ public class GenerateExpensesReportUseCase : IGenerateExpensesReportUseCase
         worksheet.Cells("A1:E1").Style.Font.Bold = true;
         worksheet.Cells("A1:E1").Style.Fill.BackgroundColor = XLColor.FromHtml("#82E0AA");
 
-        worksheet.Cell("Ä1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("A1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("B1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("C1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);

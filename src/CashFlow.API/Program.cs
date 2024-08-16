@@ -47,6 +47,14 @@ builder.Services.AddSwaggerGen(config =>
     });
 });
 
+builder.Services.AddSwaggerGen(options => {
+    options.MapType<DateOnly>(() => new OpenApiSchema
+    {
+        Type = "string",
+        Format = "date"
+    });
+});
+
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFillter)));
@@ -75,7 +83,6 @@ builder.Services.AddAuthentication(config =>
     };
 });
 
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -96,13 +103,10 @@ app.MapControllers();
 if(builder.Configuration.IsTestEnvironment() is false) await MigrateDatabase();
 
 app.Run();
-
-
 async Task MigrateDatabase()
 {
     await using var scope = app.Services.CreateAsyncScope();
 
     await DataBaseMigration.MigrateDatabase(scope.ServiceProvider);
 }
-
 public partial class Program() { }

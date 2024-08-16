@@ -1,0 +1,26 @@
+﻿using CashFlow.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WebAPI.Test.Resources;
+public class UserIdentityManager
+{
+    private readonly User _user;
+    private readonly string _password;
+    private readonly string _token;
+
+    public UserIdentityManager(User user, string password, string token)
+    {
+        _user = user;
+        _password = password;
+        _token = token;
+    }
+
+    public string GetName() => _user.Name;
+    public string GetEmail() => _user.Email;
+    public string GetPassword() => _password;
+    public string GetToken() => _token;
+}

@@ -70,7 +70,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Esse e-mail já está sendo usado.
+        ///   Looks up a localized string similar to This email is already being used.
         /// </summary>
         public static string EMAIL_ALREADY_REGISTERED {
             get {
@@ -79,7 +79,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O e-mail não pode  estar vazio.
+        ///   Looks up a localized string similar to The email cannot be empty.
         /// </summary>
         public static string EMAIL_EMPTY {
             get {
@@ -88,7 +88,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O e-mail é inválido.
+        ///   Looks up a localized string similar to The email is invalid.
         /// </summary>
         public static string EMAIL_INVALID {
             get {
@@ -97,7 +97,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-mail ou senha inválidos.
+        ///   Looks up a localized string similar to Invalid email or password.
         /// </summary>
         public static string EMAIL_OR_PASSWORD_INVALID {
             get {
@@ -124,7 +124,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sua senha deve conter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um caractere especial.
+        ///   Looks up a localized string similar to Your password must contain at least 8 characters, one uppercase letter, one lowercase letter and one special character.
         /// </summary>
         public static string INVALID_PASSWORD {
             get {
@@ -133,7 +133,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O nome não pode estar vazio.
+        ///   Looks up a localized string similar to The name cannot be empty.
         /// </summary>
         public static string NAME_EMPTY {
             get {

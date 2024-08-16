@@ -10,20 +10,18 @@ using System.Text.Json;
 using WebAPI.Test.InlineData;
 
 namespace WebAPI.Test.Login;
-public class DoLoginTest: IClassFixture<CustomWebApplicationFactory>
+public class DoLoginTest: CashFlowClassFixture
 {
     private const string METHOD = "api/login";
-    private readonly HttpClient _httpClient;
     private readonly string _email;
     private readonly string _name;
     private readonly string _password;
 
-    public DoLoginTest(CustomWebApplicationFactory webApplicationFactory)
+    public DoLoginTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
-        _email = webApplicationFactory.GetEmail();
-        _name = webApplicationFactory.GetName();
-        _password = webApplicationFactory.GetPassword();
+        _email = webApplicationFactory.User_Team_Member.GetEmail();
+        _name = webApplicationFactory.User_Team_Member.GetName();
+        _password = webApplicationFactory.User_Team_Member.GetPassword();
     }
 
     [Fact]
@@ -35,7 +33,7 @@ public class DoLoginTest: IClassFixture<CustomWebApplicationFactory>
             Password = _password,
         };
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(METHOD, request);
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -49,13 +47,11 @@ public class DoLoginTest: IClassFixture<CustomWebApplicationFactory>
 
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_Empty_Name(string cultureInfo)
+    public async Task Error_Empty_Name(string culture)
     {
         var request = RequestLoginJsonBuilder.Build();
 
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(METHOD, request, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
@@ -65,7 +61,7 @@ public class DoLoginTest: IClassFixture<CustomWebApplicationFactory>
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", new CultureInfo(cultureInfo));
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", new CultureInfo(culture));
 
         errors.Should().HaveCount(1)
               .And.Contain(message =>

@@ -121,16 +121,16 @@
     <value>The Amount must be greater than zero.</value>
   </data>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
-    <value>Esse e-mail já está sendo usado</value>
+    <value>This email is already being used</value>
   </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
-    <value>O e-mail não pode  estar vazio</value>
+    <value>The email cannot be empty</value>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
-    <value>O e-mail é inválido</value>
+    <value>The email is invalid</value>
   </data>
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
-    <value>E-mail ou senha inválidos</value>
+    <value>Invalid email or password</value>
   </data>
   <data name="EXPENSES_CANNOT_BE_FOR_THE_FUTURE" xml:space="preserve">
     <value>Expenses cannot be for the future.</value>
@@ -139,10 +139,10 @@
     <value>Expense not found</value>
   </data>
   <data name="INVALID_PASSWORD" xml:space="preserve">
-    <value>Sua senha deve conter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um caractere especial</value>
+    <value>Your password must contain at least 8 characters, one uppercase letter, one lowercase letter and one special character</value>
   </data>
   <data name="NAME_EMPTY" xml:space="preserve">
-    <value>O nome não pode estar vazio</value>
+    <value>The name cannot be empty</value>
   </data>
   <data name="PAYMENT_TYPE_IS_INVALID" xml:space="preserve">
     <value>Payment method is not valid.</value>

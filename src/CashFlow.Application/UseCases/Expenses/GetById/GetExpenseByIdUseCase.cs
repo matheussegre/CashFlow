@@ -6,13 +6,13 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionsBase;
 
 namespace CashFlow.Application.UseCases.Expenses.GetById;
-internal class GetExpenseByIdUseCase : IGetExpenseByIdUseCase
+public class GetExpenseByIdUseCase : IGetExpenseByIdUseCase
 {
     private readonly IExpensesReadOnlyRepository _repository;
     private readonly IMapper _mapper;
     private readonly ILoggedUser _loggedUser;
-    public GetExpenseByIdUseCase(ILoggedUser loggedUser,
-        IExpensesReadOnlyRepository repository, IMapper mapper)
+    public GetExpenseByIdUseCase(
+        IExpensesReadOnlyRepository repository, IMapper mapper, ILoggedUser loggedUser)
     {
         _loggedUser = loggedUser;
         _repository = repository;

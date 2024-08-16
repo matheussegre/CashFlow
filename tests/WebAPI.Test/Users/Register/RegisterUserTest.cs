@@ -9,14 +9,12 @@ using System.Text.Json;
 using WebAPI.Test.InlineData;
 
 namespace WebAPI.Test.Users.Register;
-public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
+public class RegisterUserTest: CashFlowClassFixture
 {
     private const string METHOD = "api/users";
-    private readonly HttpClient _httpClient;
 
-    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory)
+    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
     }
 
     [Fact]
@@ -24,7 +22,7 @@ public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
     {
         var request = RequestUserJsonBuilder.Build();
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(METHOD, request);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -38,14 +36,12 @@ public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
 
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_Empty_Name(string cultureInfo)
+    public async Task Error_Empty_Name(string culture)
     {
         var request = RequestUserJsonBuilder.Build();
         request.Name = string.Empty;
 
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(METHOD, request, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -55,7 +51,7 @@ public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_EMPTY", new CultureInfo(cultureInfo));
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_EMPTY", new CultureInfo(culture));
 
         errors.Should().HaveCount(1)
               .And.Contain(message => 

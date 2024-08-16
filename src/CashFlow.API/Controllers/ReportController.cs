@@ -17,9 +17,9 @@ public class ReportController : ControllerBase
 
     public async Task<IActionResult> GetExcel(
         [FromServices] IGenerateExpensesReportUseCase useCase,
-        [FromHeader] DateTime month)
+        [FromQuery] DateOnly month)
     {
-        byte[] file = await useCase.Execute(DateOnly.FromDateTime(month));
+        byte[] file = await useCase.Execute(month);
 
         if (file.Length > 0) return File(file, MediaTypeNames.Application.Octet, "report.xlsx");
 
@@ -31,9 +31,9 @@ public class ReportController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetPDF(
         [FromServices] IGenerateExpensesReportPdfUseCase useCase,
-        [FromQuery] DateTime month)
+        [FromQuery] DateOnly month)
     {
-        byte[] file = await useCase.Execute(DateOnly.FromDateTime(month));
+        byte[] file = await useCase.Execute(month);
 
         if (file.Length > 0) return File(file, MediaTypeNames.Application.Pdf, "report.pdf");
 
