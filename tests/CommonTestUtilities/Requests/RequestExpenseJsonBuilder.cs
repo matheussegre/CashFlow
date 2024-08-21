@@ -12,7 +12,8 @@ public class RequestExpenseJsonBuilder
             .RuleFor(request => request.Description, faker => faker.Commerce.ProductDescription())
             .RuleFor(request => request.Date, faker => faker.Date.Past())
             .RuleFor(request => request.PaymentMethod, faker => faker.PickRandom<PaymentsMethods>())
-            .RuleFor(request => request.Amount, faker => faker.Random.Decimal(min: 1, max: 1000));
+            .RuleFor(request => request.Amount, faker => faker.Random.Decimal(min: 1, max: 1000))
+            .RuleFor(request => request.Tags, faker => faker.Make(1, () => faker.PickRandom<Tags>()));
         
         //var faker = new Faker();
         //var order = new RequestExpenseJson

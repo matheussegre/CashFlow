@@ -151,6 +151,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag not supported..
+        /// </summary>
+        public static string TAG_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("TAG_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title is required..
         /// </summary>
         public static string TITLE_REQUIRED {

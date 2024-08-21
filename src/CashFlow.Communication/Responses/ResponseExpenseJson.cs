@@ -9,4 +9,5 @@ public class ResponseExpenseJson
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }
     public PaymentsMethods PaymentMethod { get; set; }
+    public IList<Tags> Tags { get; set; } = [];
 }
