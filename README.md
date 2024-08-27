@@ -23,7 +23,7 @@ Os pacotes **NuGet** utilizados foram:
 - **Domain-Drive Design (DDD)**: Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
 - **Testes de Unidade**: Testes abrangentes com FluentAssertions para garantir a funcionalidade e a qualidade.
 - **Geração de Relatórios**: Capacidade de exportar relatórios detalhados para **PDF** e **Excel**, oferencendo uma análise visual e eficaz das despesas.
-- **RESTful API com Documentação Swagger**: Interface documetnada que facilita a integra;cão e o teste por parte dos desenvolvedores.
+- **RESTful API com Documentação Swagger**: Interface documentada que facilita a integração e o teste por parte dos desenvolvedores.
 
 ### Build With
 ![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge)
